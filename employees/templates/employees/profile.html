@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card border-success mb-3">
+  <div class="card-header bg-transparent border-success fs-4 text-border">{{user.username}}'s Profile</div>
+  <div class="card-body">
+    <!-- check username -->
+
+    {% if user.username %}
+      <p class="card-text">Username: {{user.username}}</p>
+    {% else %}
+      <div class="alert alert-warning" role="alert">
+        <b>Username</b> is not provided by user
+      </div>
+    {% endif %}
+
+    <!-- check first_name -->
+    {% if user.first_name %}
+      <p class="card-text">First Name: {{user.first_name}}</p>
+    {% else %}
+      <div class="alert alert-warning" role="alert">
+        <b>First Name</b> is not provided by user
+      </div>
+    {% endif %}
+
+    <!-- check last_name -->
+    {% if user.last_name %}
+      <p class="card-text">Last Name: {{user.last_name}}</p>
+    {% else %}
+      <div class="alert alert-warning" role="alert">
+        <b>Last Name</b> is not provided by user
+      </div>
+    {% endif %}
+
+    <!-- check email -->
+    {% if user.email %}
+      <p class="card-text">Email: {{user.email}}</p>
+      {% else %}
+      <div class="alert alert-warning" role="alert">
+        <b>Email</b> is not provided by user
+      </div>
+    {% endif %}
+  </div>
+  <div class="card-footer bg-transparent border-success">
+    <a href="{% url 'change-password' %}" class="btn btn-sm btn-primary"><i class="fa-solid fa-lock"></i> Change Password</a>
+    <a href="{% url 'edit_user' %}" class="btn btn-sm btn-info"><i class="fa-solid fa-user-pen"></i> Edit Profile</a>
+    <a href="{% url 'delete_user' user.id %}" class="btn btn-sm btn-danger"><i class="fa-solid fa-user-slash"></i> Delete Account</a>
+  </div>
+</div>
+{% endblock content %}
