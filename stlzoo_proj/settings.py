@@ -21,7 +21,7 @@ MESSAGE_TAGS = {messages.ERROR: "danger"}
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "stlzoo.onrender.com"]
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "base.apps.BaseConfig",
     "employees.apps.EmployeesConfig",
     "contacts.apps.ContactsConfig",
+    "species.apps.SpeciesConfig",
     #
     "fontawesomefree",
     "crispy_forms",
@@ -89,10 +90,21 @@ DATABASES = {
 }
 """
 
-# Render PostgreSQL database (live)
-import dj_database_url
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": env("DB_NAME"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
+        "HOST": env("DB_HOST"),
+        "PORT": env("DB_PORT"),
+    }
+}
 
-DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
+# Render PostgreSQL database (live)
+# import dj_database_url
+
+# DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
 
 
 # Password validation
