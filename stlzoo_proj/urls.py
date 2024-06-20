@@ -10,8 +10,6 @@ urlpatterns = [
     path("employees/", include("employees.urls")),
     path("contact_us/", include("contacts.urls")),
     path("species/", include("species.urls", namespace="species")),
-    # Ckeditor
-    path("ckeditor5/", include("django_ckeditor_5.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
