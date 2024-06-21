@@ -10,6 +10,7 @@ urlpatterns = [
     path("employees/", include("employees.urls")),
     path("contact_us/", include("contacts.urls")),
     path("species/", include("species.urls", namespace="species")),
+    path("suppliers/", include("suppliers.urls", namespace="suppliers")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
