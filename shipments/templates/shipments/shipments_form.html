@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Create/Update form
+{% endblock title %}
+
+{% block content %}
+  <h2><span class="badge bg-secondary">
+    Number released is calculated automatically
+  </span></h2>
+  <div class="container-fluid pt-3">
+    <form action="" method="POST" class="row">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <br>
+      <div class="pt-3">
+        <a href="{% url 'shipments:list-shipments' %}" class="btn btn-primary">Back</a>
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+{% endblock content %}

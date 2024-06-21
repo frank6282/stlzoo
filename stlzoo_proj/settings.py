@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "contacts.apps.ContactsConfig",
     "species.apps.SpeciesConfig",
     "suppliers.apps.SuppliersConfig",
+    "shipments.apps.ShipmentsConfig",
     #
     "fontawesomefree",
     "crispy_forms",
