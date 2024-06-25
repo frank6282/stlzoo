@@ -107,9 +107,9 @@ DATABASES = {
 }
 
 # Render PostgreSQL database (live)
-# import dj_database_url
+import dj_database_url
 
-# DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
+DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
 
 
 # Password validation
