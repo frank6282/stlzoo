@@ -3,8 +3,7 @@
 <div class="container-fluid">
   <h1>{{ species.scientific_name }}</h1>
   <h3>{{ species.common_name }}</h3>
-  <p>{{ species.description|safe }}</p>
-  <img style="max-width: 500px;" src="{{ species.butterfly_image.url }}" alt="no image">
+  <a href="{{ species.description }}">URL</a>
   <a href="{% url 'species:list-species' %}" class="btn btn-primary">Back</a>
 </div>
 {% endblock content %}

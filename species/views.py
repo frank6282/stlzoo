@@ -43,7 +43,7 @@ class SpeciesCreateView(LoginRequiredMixin, generic.CreateView):
 class SpeciesUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Species
     template_name = "species/species_form.html"
-    fields = ["scientific_name", "common_name", "butterfly_image", "description"]
+    fields = ["scientific_name", "common_name", "description"]
 
     def get_success_url(self):
         pk = self.kwargs["pk"]

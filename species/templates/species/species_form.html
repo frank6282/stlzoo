@@ -5,11 +5,9 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container-fluid pt-3">
-  <form action="" method="POST" enctype="multipart/form-data">
+  <form action="" method="POST">
     {% csrf_token %}
     {{ form|crispy }}
-    <p>{{ form.media }}</p>
-    <br>
     <a href="{% url 'species:list-species' %}" class="btn btn-primary">Back</a>
     <input type="submit" value="Submit">
   </form>

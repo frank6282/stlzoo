@@ -40,8 +40,8 @@
         <tr>
           <th scope="col">Scientific Name</th>
           <th scope="col">Common Name</th>
-          <th scope="col">Description</th>
-          <th>View | Edit | Delete</th>
+          <th scope="col">-</th>
+          <th>Edit | Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -49,12 +49,8 @@
           <tr class="table table-sm table-info">
             <td>{{specie.scientific_name}}</td>
             <td>{{specie.common_name}}</td>
-            <td>{{specie.description|safe|truncatechars:20}}</td>
+            <td><a href="{{specie.description}}">More Info</a></td>
             <td>
-              <a class="btn btn-sm btn-primary"
-              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
-              href="{% url 'species:detail-species' specie.id %}">Detail</a>
-
               <a class="btn btn-sm btn-info"
               style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
               href="{% url 'species:update-species' specie.id %}">Update</a>
