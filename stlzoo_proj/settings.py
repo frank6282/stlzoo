@@ -3,10 +3,11 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import environ
+from environ import Env
 
-env = environ.Env()
-environ.Env.read_env()
+env = Env()
+Env.read_env()
+ENVIRONMENT = env("ENVIRONMENT", default="production")
 
 # Override standard messages
 from django.contrib.messages import constants as messages
@@ -17,11 +18,13 @@ MESSAGE_TAGS = {messages.ERROR: "danger"}
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-jsv+-a0@svli$ypj0we!#_to7u&6g^2t)09+nuu_al5r(7m^98"
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+if ENVIRONMENT == "development":
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "stlzoo.onrender.com"]
 
@@ -35,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "admin_honeypot",
     "base.apps.BaseConfig",
     "employees.apps.EmployeesConfig",
     "contacts.apps.ContactsConfig",
@@ -166,6 +170,8 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_USERNAME_BLACKLIST = ["admin", "theman"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
