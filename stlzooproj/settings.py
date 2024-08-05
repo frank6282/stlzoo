@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "admin_honeypot",
     #
     "base.apps.BaseConfig",
+    "authors.apps.AuthorsConfig",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
