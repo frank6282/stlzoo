@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+  <main class="formPage my-xl">
+    <div class="content-box">
+      <div class="formWrapper">
+        <br>
+        <form class="form" action="" method="POST">
+          {% csrf_token %}
+          <p class="bg-warning w-25">Are you sure you want to delete "<strong>{{ object }}</strong>"?</p>
+          <a class="btn btn-lg my-md btn-primary" href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+          <input class="btn btn-lg my-md btn-secondary" type="submit" value="Confirm" />
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock content %}

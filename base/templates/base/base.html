@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1 class="red_color">Dashboard</h1>
+<h4>
+  Click on user name in upper right corner to change password, edit account information, or delete the account.
+</h4>
+{% if user.is_authenticated %}
+  <div class="container">
+    <div class="row justify-content-center pt-5">
+      <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="card bg-light">
+          <div class="card-header">Species <i class="fa-regular fa-rectangle-list"></i></div>
+          <div class="card-body">
+            <h5 class="card-title">Species Options</h5>
+            <p class="card-text">add, edit or delete a <strong>species.</strong></p>
+            <a href="" class="btn btn-primary"><i class="fa-solid fa-mosquito"></i> List Species</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card bg-light">
+          <div class="card-header">Suppliers <i class="fa-solid fa-truck-field-un fa-lg"></i></div>
+          <div class="card-body">
+            <h5 class="card-title">Supplier Options</h5>
+            <p class="card-text">add, edit or delete a <strong>supplier.</strong></p>
+            <a href="" class="btn btn-primary"><i class="fa-solid fa-list fa-lg"></i> List Suppliers</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card bg-light">
+          <div class="card-header">Shipments <i class="fa-solid fa-ship fa-lg"></i></div>
+          <div class="card-body">
+            <h5 class="card-title">Shipment Options</h5>
+            <p class="card-text">add, edit or delete a <strong>shipment.</strong></p>
+            <a href="" class="btn btn-primary"><i class="fa-solid fa-list fa-lg"></i> List Shipments</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div class="col-md-4 offset-md-4">
+    <h1>Login</h1>
+    <br />
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div class="mb-3">
+        <input type="text" class="form-control" name="username" , placeholder="Username" required>
+      </div><br />
+      <div class="mb-3">
+        <input type="password" class="form-control" name="password" , placeholder="Password" required>
+      </div>
+      <br />
+      <button type="submit" class="btn btn-secondary">Login</button>
+    </form>
+  </div>
+{% endif %}
+
+{% endblock %}
