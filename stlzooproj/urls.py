@@ -8,6 +8,7 @@ urlpatterns = [
     path("admin/", include("admin_honeypot.urls", namespace="admin_honeypot")),
     path("theman/", admin.site.urls),
     path("", include("base.urls")),
+    path("authors/", include("authors.urls")),
 ]
 
 if settings.DEBUG:

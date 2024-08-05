@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'base' %}">Insectarium</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Insectarium</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
           {% else %}
           class="nav-link"
           {% endif %}
-          aria-current="page" href="{% url 'base' %}"><i class="fa-solid fa-house"></i> Home</a>
+          aria-current="page" href="{% url 'home' %}"><i class="fa-solid fa-house"></i> Home</a>
         </li>
 
         <li class="nav-item">
@@ -34,16 +34,16 @@
           {{user.first_name}} {{user.last_name}} <br> @{{user.username}}
         </a>
         <li class="nav-item">
-          <a class="nav-link" href="">Logout</a>
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
       {% else %}
-        {% comment %}
+
           <li class="nav-item">
-            <a class="nav-link" href=""><i class="fa-solid fa-arrow-to-right-to-bracket"></i> Login</a>
+            <a class="nav-link" href="{% url 'login' %}"><i class="fa-solid fa-arrow-to-right-to-bracket"></i> Login</a>
           </li>
-        {% endcomment %}
+          
         <li class="nav-item">
-          <a class="nav-link" href=""><i class="fa-solid fa-user-plus fa-lg"></i> Signup</a>
+          <a class="nav-link" href="{% url 'register' %}"><i class="fa-solid fa-user-plus fa-lg"></i> Signup</a>
         </li>
       {% endif %}
     </ul>

@@ -6,7 +6,7 @@
 <h4>
   Click on user name in upper right corner to change password, edit account information, or delete the account.
 </h4>
-{% if user.is_authenticated %}
+
   <div class="container">
     <div class="row justify-content-center pt-5">
       <div class="col-sm-4 mb-3 mb-sm-0">
@@ -41,11 +41,14 @@
       </div>
     </div>
   </div>
-{% else %}
+
+{% comment %}
+
+  {% else %}
   <div class="col-md-4 offset-md-4">
     <h1>Login</h1>
     <br />
-    <form method="POST" action="">
+    <form method="POST" action="{% url 'login' %}">
       {% csrf_token %}
       <div class="mb-3">
         <input type="text" class="form-control" name="username" , placeholder="Username" required>
@@ -57,6 +60,7 @@
       <button type="submit" class="btn btn-secondary">Login</button>
     </form>
   </div>
-{% endif %}
+
+  {% endcomment %}
 
 {% endblock %}
