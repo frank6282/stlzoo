@@ -9,6 +9,7 @@ urlpatterns = [
     path("theman/", admin.site.urls),
     path("", include("base.urls")),
     path("authors/", include("authors.urls")),
+    path("species/", include("species.urls", namespace="species")),
 ]
 
 if settings.DEBUG:

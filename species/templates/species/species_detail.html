@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+  <h1>{{ species.scientific_name }}</h1>
+  <h3>{{ species.common_name }}</h3>
+  <a href="{{ species.description }}">URL</a>
+  <a href="{% url 'species:list-species' %}" class="btn btn-primary">Back</a>
+</div>
+{% endblock content %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Species List
+{% endblock title %}
+
+{% block content %}
+<div class="input-group mb-3 mx-2">
+  <div class="input-group-append">
+    <a href="{% url 'species:create-species' %}" class="btn btn-secondary">
+      <i class="fas fa-plus"></i>&nbsp;&nbsp; Add Species
+    </a>
+    <a href="{% url 'home' %}" class="btn btn-secondary">
+      <i class="fas fa-plus"></i>&nbsp;&nbsp; Back
+    </a>
+  </div>
+</div>
+<div class="container-fluid">
+  <section>
+    <div>
+      <form action="">
+        {{ form.media }}
+        <div class="input-group mb-3">
+          <input type="text" name="q" class="form-control input-sm"
+            placeholder="Search for..." value="{{ request.GET.q }}">
+          <button class="btn btn-secondary" title="Search"><i class="fas fa-search"></i></button>
+          <a href="{% url 'species:list-species'%}"
+            class="btn btn-dark" style="margin-left: 2px;" title="Refresh">
+            <i class="fas fa-sync-alt"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Scientific Name</th>
+          <th scope="col">Common Name</th>
+          <th scope="col">Information</th>
+          <th>Edit | Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for specie in object_list %}
+          <tr class="table table-sm table-info">
+            <td>{{specie.scientific_name}}</td>
+            <td>{{specie.common_name}}</td>
+            
+            {% if specie.description %}
+              <td><a href="{{specie.description}}">More Info</a></td>
+            {% else %}
+              <td>-</td>
+            {% endif %}
+
+            <td>
+              <a class="btn btn-sm btn-info"
+              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+              href="{% url 'species:update-species' specie.id %}">Update</a>
+
+              <a class="btn btn-sm btn-danger"
+              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+              href="{% url 'species:delete-species' specie.id %}">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div> <!-- ./container-fluid -->
+
+<!-- Pagination -->
+{% include 'partials/_pagination.html' %}
+
+{% endblock content %}

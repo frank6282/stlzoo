@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #
     "base.apps.BaseConfig",
     "authors.apps.AuthorsConfig",
+    "species.apps.SpeciesConfig",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -149,12 +150,15 @@ DEFAULT_FROM_EMAIL = "Insectarium"
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_HOST_USER = env("EMAIL_ADDRESS")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_USERNAME_BLACKLIST = ["admin", "theman"]
+
+LOGIN_URL = "login"
 
 
 # Default primary key field type

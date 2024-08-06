@@ -2,10 +2,13 @@
 {% load static %}
 
 {% block content %}
-<h1 class="red_color">Dashboard</h1>
-<h4>
+<div class="row">
+<h1 class="red_color">Dashboard</h1><h2>Please login</h2>
+</div>
+
+
   Click on user name in upper right corner to change password, edit account information, or delete the account.
-</h4>
+</h2>
 
   <div class="container">
     <div class="row justify-content-center pt-5">
@@ -15,7 +18,7 @@
           <div class="card-body">
             <h5 class="card-title">Species Options</h5>
             <p class="card-text">add, edit or delete a <strong>species.</strong></p>
-            <a href="" class="btn btn-primary"><i class="fa-solid fa-mosquito"></i> List Species</a>
+            <a href="{% url 'species:list-species' %}" class="btn btn-primary"><i class="fa-solid fa-mosquito"></i> List Species</a>
           </div>
         </div>
       </div>
