@@ -7,7 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views import generic
-from .forms import LoginUserForm
+from .forms import LoginUserForm, ContactForm
 
 
 def home(request):
@@ -49,4 +49,17 @@ class logOut(generic.View):
     def get(self, request):
         logout(request)
         messages.success(request, "You have successfully logged out")
+        return redirect("home")
+
+
+class contactUs(SuccessMessageMixin, generic.CreateView):
+    form_class = ContactForm
+    template_name = "base/contact_us.html"
+    success_url = "/"
+    success_message = "Your query has been submitted successfully"
+
+    def form_invalid(self, form):
+        messages.add_message(
+            self.request, messages.ERROR, "There was an error, re-submit"
+        )
         return redirect("home")
