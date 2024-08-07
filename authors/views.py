@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
@@ -62,21 +62,14 @@ class logOut(generic.View):
         return redirect("home")
 
 
-class profile(generic.View):
-    model = ""
-    # template_name = "authors/profile.html"
+class MyPasswordChangeView(PasswordChangeView):
+    form_class = PasswordChangingForm
+    template_name = "authors/password-change.html"
+    success_url = reverse_lazy("password-change-done-view")
 
-    # def get(self, request, user_name):
-    #     user_related_data = Blog.objects.filter(author__username=user_name)
-    #     context = {"user_related_data": user_related_data}
-    # return render(request, self.template_name, context)
 
-    class PasswordChangeView(PasswordChangeView):
-        form_class = PasswordChangingForm
-        success_url = reverse_lazy("password_success")
-
-    def password_success(request):
-        return render(request, "authors/password_change_success.html")
+class MyPasswordResetDoneView(PasswordResetDoneView):
+    template_name = "authors/password-reset-done.html"
 
 
 class UpdateUserView(SuccessMessageMixin, generic.UpdateView):
@@ -99,4 +92,4 @@ class DeleteUser(SuccessMessageMixin, generic.DetailView):
     model = User
     template_name = "authors/delete_user_confirm.html"
     success_message = "User has been deleted"
-    success_url = reverse_lazy("base")
+    success_url = reverse_lazy("home")
