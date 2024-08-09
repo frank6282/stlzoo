@@ -10,6 +10,7 @@ urlpatterns = [
     path("", include("base.urls")),
     path("authors/", include("authors.urls")),
     path("species/", include("species.urls", namespace="species")),
+    path("suppliers/", include("suppliers.urls", namespace="suppliers")),
 ]
 
 if settings.DEBUG:

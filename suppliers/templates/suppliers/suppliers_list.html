@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Supplier List
+{% endblock title %}
+
+{% block content %}
+<div class="input-group mb-3 mt-5">
+  <div class="input-group-append">
+    <a href="{% url 'suppliers:create-suppliers' %}" class="btn btn-secondary">
+      <i class="fas fa-plus"></i>&nbsp;&nbsp; Add Supplier
+    </a>
+    <a href="{% url 'home' %}" class="btn btn-secondary">
+      <i class="fas fa-plus"></i>&nbsp;&nbsp; Back
+    </a>
+  </div>
+</div>
+<div class="container-fluid">
+  <section>
+    <div>
+      <form action="">
+        <div class="input-group mb-3">
+          <input type="text" name="q" class="form-control input-sm" placeholder="Search for..."
+            value="{{ request.GET.q }}">
+          <button class="btn btn-secondary" title="Search"><i class="fas fa-search"></i></button>
+          <a href="{% url 'suppliers:list-suppliers'%}" class="btn btn-dark" style="margin-left: 2px;" title="Refresh">
+            <i class="fas fa-sync-alt"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Supplier Name</th>
+          <th scope="col">Telephone</th>
+          <th scope="col">Country</th>
+          <th scope="col">Address</th>
+          <th scope="col">City</th>
+          <th scope="col">State</th>
+          <th scope="col">Zip Code</th>
+          <th>View | Edit | Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for supplier in object_list %}
+        <tr class="table table-sm table-info">
+          <td>{{ supplier.name }}</td>
+          <td>{{ supplier.phone }}</td>
+          <td>{{ supplier.country|truncatechars:20 }}</td>
+          <td>{{ supplier.address }}</td>
+          <td>{{ supplier.city }}</td>
+          <td>{{ supplier.state }}</td>
+          <td>{{ supplier.zipcode }}</td>
+          <td>
+            <a class="btn btn-sm btn-primary me-1" href="{% url 'suppliers:detail-suppliers' supplier.id %}">Detail</a>
+            <a class="btn btn-sm btn-info me-1" href="{% url 'suppliers:update-suppliers' supplier.id %}">Update</a>
+            <a class="btn btn-sm btn-danger me-1" href="{% url 'suppliers:delete-suppliers' supplier.id  %}">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div> <!-- ./container-fluid -->
+
+{% include 'partials/_pagination.html' %}
+{% endblock content %}

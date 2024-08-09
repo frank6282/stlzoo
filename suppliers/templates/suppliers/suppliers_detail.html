@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+  Supplier Detail
+{% endblock title %}
+{% block content %}
+<div class="container-fluid">
+  <ul class="list-group">
+    <li class="list-group-item">Name: {{ suppliers.name }}</li>
+    <li class="list-group-item">Telephone: {{ suppliers.phone }}</li>
+    <li class="list-group-item">Email: {{ suppliers.email }}</li>
+    <li class="list-group-item">Country: {{ suppliers.country }}</li>
+    <li class="list-group-item">Address: {{ suppliers.address }}</li>
+    <li class="list-group-item">City: {{ suppliers.city }}</li>
+    <li class="list-group-item">State: {{ suppliers.state }}</li>
+    <li class="list-group-item">Zip code: {{ suppliers.zipcode }}</li>
+  </ul>
+  <br>
+  <a href="{% url 'suppliers:list-suppliers' %}" class="btn btn-primary">Back</a>
+</div>
+{% endblock content %}
