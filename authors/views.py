@@ -21,7 +21,7 @@ class signup(SuccessMessageMixin, generic.CreateView):
         messages.add_message(
             self.request, messages.ERROR, "There was an error, re-submit"
         )
-        return redirect("base")
+        return redirect("home")
 
 
 class logIn(generic.View):
@@ -64,12 +64,12 @@ class logOut(generic.View):
 
 class MyPasswordChangeView(PasswordChangeView):
     form_class = PasswordChangingForm
-    template_name = "authors/password-change.html"
-    success_url = reverse_lazy("password-change-done-view")
+    template_name = "authors/password_change.html"
+    success_url = reverse_lazy("password_change_done_view")
 
 
 class MyPasswordResetDoneView(PasswordResetDoneView):
-    template_name = "authors/password-reset-done.html"
+    template_name = "authors/password_change_done.html"
 
 
 class UpdateUserView(SuccessMessageMixin, generic.UpdateView):

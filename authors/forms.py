@@ -24,6 +24,10 @@ class SignupForm(UserCreationForm):
             {"class": "form-control", "placeholder": "Enter your last name"}
         )
 
+        self.fields["email"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Enter your email"}
+        )
+
         self.fields["password1"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Enter your password"}
         )
@@ -38,6 +42,7 @@ class SignupForm(UserCreationForm):
             "username",
             "first_name",
             "last_name",
+            "email",
             "password1",
             "password2",
         ]
@@ -45,6 +50,7 @@ class SignupForm(UserCreationForm):
     username = forms.CharField(max_length=150)
     first_name = forms.CharField(max_length=150)
     last_name = forms.CharField(max_length=150)
+    email = forms.EmailField(max_length=150)
     password1 = forms.PasswordInput()
     password2 = forms.PasswordInput()
 
@@ -111,4 +117,4 @@ class EditUserProfileForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ["username", "first_name", "last_name"]
+        fields = ["username", "first_name", "last_name", "email"]

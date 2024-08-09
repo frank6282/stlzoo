@@ -159,6 +159,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_BLACKLIST = ["admin", "theman"]
 
 LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "home"
 
 
 # Default primary key field type
