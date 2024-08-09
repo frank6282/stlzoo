@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Shipment List
+{% endblock title %}
+
+{% block content %}
+<div class="input-group mb-3 mt-5">
+  <div class="input-group-append">
+    <a href="{% url 'shipments:create-shipments' %}" class="btn btn-secondary">
+      <i class="fas fa-plus"></i>&nbsp;&nbsp; Add Shipment
+    </a>
+    <a href="{% url 'home' %}" class="btn btn-secondary">
+      <i class="fas fa-plus"></i>&nbsp;&nbsp; Back
+    </a>
+  </div>
+</div>
+<div class="container-fluid">
+  <section>
+    <div>
+      <form action="">
+        <div class="input-group mb-3">
+          <input type="text" name="q" class="form-control input-sm"
+            placeholder="Search for..." value="{{ request.GET.q }}">
+          <button class="btn btn-secondary" title="Search"><i class="fas fa-search"></i></button>
+          <a href="{% url 'shipments:list-shipments'%}"
+            class="btn btn-dark" style="margin-left: 2px;" title="Refresh">
+            <i class="fas fa-sync-alt"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </section>
+  <div class="container">
+    <table class="table table-hover table-border">
+      <thead>
+        <tr>
+          <th scope="col">Suppliers</th>
+          <th scope="col">Created</th>
+          <th scope="col">Species</th>
+          <th scope="col">Label</th>
+          <th scope="col">Received</th>
+          <th scope="col">Bad</th>
+          <th scope="col">Non</th>
+          <th scope="col">Doa</th>
+          <th scope="col">Para</th>
+          <th scope="col">Entered</th>
+          <th scope="col">Released</th>
+          <th>Edit | Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for shipment in object_list %}
+          <tr class="table table-sm table-primary">
+            <td>{{ shipment.supplier }}</td>
+            <td>{{ shipment.created|date:'m/d/Y' }}</td>
+            <td>{{ shipment.species }}</td>
+            <td>{{ shipment.label }}</td>
+            <td>{{ shipment.received }}</td>
+            <td>{{ shipment.bad }}</td>
+            <td>{{ shipment.non }}</td>
+            <td>{{ shipment.doa }}</td>
+            <td>{{ shipment.para }}</td>
+            <td>{{ shipment.entered|yesno }}</td>
+            <td>{{ shipment.released }}</td>
+            <td>
+              <a
+                class="btn btn-sm btn-warning me-1" href="{% url 'shipments:update-shipments' shipment.id %}">Edit
+              </a>
+              <a
+                class="btn btn-sm btn-danger me-1" href="{% url 'shipments:delete-shipments' shipment.id %}">Delete
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <hr>
+</div> <!-- ./container-fluid -->
+
+{% include 'partials/_pagination.html' with queryset=shipments custom_range=custom_range %}
+{% endblock content %}

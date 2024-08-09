@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "authors.apps.AuthorsConfig",
     "species.apps.SpeciesConfig",
     "suppliers.apps.SuppliersConfig",
+    "shipments.apps.ShipmentsConfig",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

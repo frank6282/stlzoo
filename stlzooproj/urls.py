@@ -11,6 +11,7 @@ urlpatterns = [
     path("authors/", include("authors.urls")),
     path("species/", include("species.urls", namespace="species")),
     path("suppliers/", include("suppliers.urls", namespace="suppliers")),
+    path("shipments/", include("shipments.urls", namespace="shipments")),
 ]
 
 if settings.DEBUG:
